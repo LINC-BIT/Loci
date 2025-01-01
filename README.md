@@ -385,7 +385,8 @@ python multi/server.py --epochs=150 --num_users=10 --frac=0.4 --ip=127.0.0.1:800
    ```
 ### 5.6 Result
 - **The accuracy trend overtime time under different workloads**(X-axis represents the time and Y-axis represents the inference accuracy)
-    ![](https://github.com/LINC-BIT/Loci/blob/main/Result.pdf)
+    ![](https://github.com/LINC-BIT/Loci/blob/main/Result.png))
+  https://github.com/LINC-BIT/Loci/blob/main/Result.png
 
 
 ### 6 Citation
