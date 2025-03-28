@@ -17,7 +17,7 @@
   * [6.1 Generate task](#61-Generate-task)
   * [6.2 Selection of model](#62-Selection-of-model)
 - [7 Experiments](#7-Experiments)
-  * [7.1 Running on Cifar100](#71-under-different-workloads-model-and-dataset)
+  * [7.1 Running on Cifar100](#71-Running-on-Cifar100)
   * [7.2 Running on MiniImageNet](#72-Running-on-MiniImgaeNet)
   * [7.3 Running on TinyImageNet](#73-Running-on-TinyImageNet)
   * [7.4 Running on ASC](#74-Running-on-ASC)
@@ -331,7 +331,7 @@ class SixCNN(nn.Module):
         return output
 ```
 
-## 7 Experiment
+## 7 Experiments
 ### 7.1 Running on Cifar100
 We selected 10 Jetson and raspberry Pi devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
