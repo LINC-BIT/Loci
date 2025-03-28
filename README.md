@@ -24,23 +24,23 @@ For CV application, it supports 5 models:
 - [ResNet](https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html): this model consists of multiple convolutional layers and pooling layers that extract the information in image. Typically, ResNet suffers from gradient vanishing (exploding) and performance degrading when the network is  deep. ResNet thus adds BatchNorm to alleviate gradient vanishing (exploding) and adds residual connection to alleviate the performance degrading.
 - [MobileNet](https://arxiv.org/abs/1801.04381): MobileNet is a lightweight convolutional network which widely uses the depthwise separable convolution.
 - [DenseNet](https://arxiv.org/pdf/1707.06990.pdf): DenseNet extends ResNet by adding connections between each blocks to aggregate all multi-scale features.
-- [WideResNet](): WideResNet (Wide Residual Network) is a deep learning model that builds on the ResNet architecture by increasing the width of residual blocks (using more feature channels) to improve performance and efficiency while reducing the depth of the network.
-- [Vit](): The Vision Transformer (ViT) applies the Transformer architecture to image recognition tasks. It segments the image into multiple patches, then inputs these small blocks as sequence data into the Transformer model, using the self-attention mechanism to capture global and local information within the image, thereby achieving efficient image classification.
+- [WideResNet](https://arxiv.org/pdf/1605.07146): WideResNet (Wide Residual Network) is a deep learning model that builds on the ResNet architecture by increasing the width of residual blocks (using more feature channels) to improve performance and efficiency while reducing the depth of the network.
+- [Vit](https://arxiv.org/abs/2010.11929): The Vision Transformer (ViT) applies the Transformer architecture to image recognition tasks. It segments the image into multiple patches, then inputs these small blocks as sequence data into the Transformer model, using the self-attention mechanism to capture global and local information within the image, thereby achieving efficient image classification.
 
 For NLP application, it cupports 6 models:
-- [RNN](): RNN (Recurrent Neural Network) is a type of neural network specifically designed for sequential data, excelling at handling time series and natural language with temporal dependencies.
-- [LSTM](): LSTM (Long Short-Term Memory) is a special type of RNN that can learn long-term dependencies, suitable for tasks like time series analysis and language modeling.
-- [Bert](): BERT (Bidirectional Encoder Representations from Transformers) is a pre-trained language representation model based on the Transformer architecture, which captures contextual information in text through deep bidirectional training. The BERT model excels in natural language processing (NLP) tasks and can be used for various applications such as text classification, question answering systems, and named entity recognition.
-- LSTMMoE():LSTMMoE (LSTM with Mixture of Experts) is a model that combines Long Short-Term Memory (LSTM) networks with a Mixture of Experts framework to enhance sequence modeling by dynamically selecting specialized expert networks for different input patterns.
-- GPT2(): GPT-2 (Generative Pre-trained Transformer 2) is a large-scale language model developed by OpenAI, designed to generate coherent and contextually relevant text by leveraging a transformer-based architecture and pre-training on diverse internet data.
-- GPTNeo(): GPT-Neo is an open-source language model developed by EleutherAI, designed as an alternative to GPT, utilizing transformer-based architecture to generate high-quality, contextually relevant text.
+- [RNN](https://arxiv.org/pdf/1406.1078): RNN (Recurrent Neural Network) is a type of neural network specifically designed for sequential data, excelling at handling time series and natural language with temporal dependencies.
+- [LSTM](https://arxiv.org/pdf/1406.1078): LSTM (Long Short-Term Memory) is a special type of RNN that can learn long-term dependencies, suitable for tasks like time series analysis and language modeling.
+- [Bert](https://arxiv.org/abs/1810.04805): BERT (Bidirectional Encoder Representations from Transformers) is a pre-trained language representation model based on the Transformer architecture, which captures contextual information in text through deep bidirectional training. The BERT model excels in natural language processing (NLP) tasks and can be used for various applications such as text classification, question answering systems, and named entity recognition.
+- [LSTMMoE](https://readpaper.com/paper/2952339051):LSTMMoE (LSTM with Mixture of Experts) is a model that combines Long Short-Term Memory (LSTM) networks with a Mixture of Experts framework to enhance sequence modeling by dynamically selecting specialized expert networks for different input patterns.
+- [GPT2](https://github.com/openai/gpt-2): GPT-2 (Generative Pre-trained Transformer 2) is a large-scale language model developed by OpenAI, designed to generate coherent and contextually relevant text by leveraging a transformer-based architecture and pre-training on diverse internet data.
+- [GPTNeo](https://github.com/EleutherAI/gpt-neox): GPT-Neo is an open-source language model developed by EleutherAI, designed as an alternative to GPT, utilizing transformer-based architecture to generate high-quality, contextually relevant text.
 
 For Graph application, it supports 2 models:
-- [GCN](): GCN (Graph Convolutional Network) is a deep learning model designed to effectively learn representations from graph-structured data by aggregating and transforming information from neighboring nodes through graph convolution operations.
-- [GAT](): GAT (Graph Attention Network) is a deep learning model that leverages attention mechanisms to assign learnable weights to neighbor nodes, enabling more effective feature aggregation and representation learning on graph-structured data.
+- [GCN](https://arxiv.org/abs/1609.02907): GCN (Graph Convolutional Network) is a deep learning model designed to effectively learn representations from graph-structured data by aggregating and transforming information from neighboring nodes through graph convolution operations.
+- [GAT](https://arxiv.org/abs/1710.10903): GAT (Graph Attention Network) is a deep learning model that leverages attention mechanisms to assign learnable weights to neighbor nodes, enabling more effective feature aggregation and representation learning on graph-structured data.
 
 For Multimodel application, it supports 1 model:
-- [CLIP](): CLIP (Contrastive Language–Image Pretraining) is a multimodal model developed by OpenAI that learns to associate images and text by jointly training on a large dataset of image-text pairs, enabling powerful zero-shot learning for diverse vision and language tasks.
+- [CLIP](https://arxiv.org/abs/2103.00020): CLIP (Contrastive Language–Image Pretraining) is a multimodal model developed by OpenAI that learns to associate images and text by jointly training on a large dataset of image-text pairs, enabling powerful zero-shot learning for diverse vision and language tasks.
 
 ## 2 How to get started
 ### 2.1 Setup
@@ -109,9 +109,45 @@ Arguments:
 
   More details refer to `utils/option.py`.
 
-## 4 Experiments setting
-### 4.1 Generate task
-#### 4.1.1 Dataset introduction
+## 4 Supported FL methods
+### 4.1 Method introduction
+Our system not only implements Loci, but also implements classic and latest federated learning methods with heterogeneous model and clustered federated learning, mainly including the following:
+- **[FedMD](https://arxiv.org/abs/2107.08517)**: This paper is from AIR(2017). It uses public datasets to update the distillation model during aggregation.
+- **[FedKD](https://arxiv.org/abs/2003.13461)**: This paper is from AIR(2017). It designs various distillation losses based on the network layer on the client-side.
+- **[FedKEMF](https://proceedings.mlr.press/v139/collins21a.html)**: This paper is from ICML(2021).  It considers merging all teacher networks during aggregation, and uses a common dataset to distill a better server-side global network.
+- **[FedGKT](https://proceedings.neurips.cc/paper/2020/hash/a1d4c20b182ad7137ab3606f0e3fc8a4-Abstract.html)** : This paper is from NIPS(2023) .It designs a variant of the alternating minimization approach to train small models on edge nodes and periodically transfer their knowledge by knowledge distillation to a large server-side model.
+- **[CFL](https://ieeexplore.ieee.org/abstract/document/9174890)** : This paper is from NNLS(Volume: 32, 2020). It divides clients into clusters based on the cosine-similarity of their gradients/parameters, and performs global aggregation for clients in the same cluster.
+- **[IFCA](https://proceedings.neurips.cc/paper_files/paper/2020/hash/e32cc80bf07915058ce90722ee17bb71-Abstract.html)** : This paper is from NIPS(2020). It estimates the clustering identity of clients, optimizes the model parameters for each cluster, and also allows parameter sharing among different clusters.
+- **[GradMFL](https://link.springer.com/chapter/10.1007/978-3-030-95384-3_38)** : This paper is from ICAAPP(2021). It introduces a hierarchical cluster to organize clients and supports knowledge transfer among different hierarchies.
+### 4.2 Method usage
+You can find the "main" file in the "baselines" folder corresponding to each method, and then run the method according to the following command
+
+	```shell
+ 	cd baselines
+  	cd XXX  # method name
+	python mainXXX.py --task_number=10 --class_number=100 --dataset=cifar100
+	```
+## 5 Supported FCL methods
+### 5.1 Method introduction
+- **[FedKNOW](https://ieeexplore.ieee.org/abstract/document/10184531/)**: This paper is from ICDE(2023). It introduces a novel communication-efficient federated learning algorithm that employs adaptive gradient quantization and selective client aggregation to dynamically adjust model updates based on network conditions and client heterogeneity, thereby reducing communication overhead while accelerating convergence.
+- **[FedViT](https://www.sciencedirect.com/science/article/abs/pii/S0167739X23004879)**: This paper is from Future Generation Computer Systems (Volume: 154, 2024). It presents a novel integrated optimization framework that combines advanced machine learning with heuristic search methods to dynamically optimize complex industrial systems through adaptive, iterative parameter tuning.
+- **[FedCL](https://ieeexplore.ieee.org/abstract/document/9190968/)**: This paper is from ICIP (2020). It proposes a novel federated learning framework that integrates blockchain technology to ensure secure and decentralized model updates among clients, thereby enhancing data privacy and system robustness.
+- **[FedWEIT](https://proceedings.mlr.press/v139/yoon21b.html?ref=https://githubhelp.com)** : This paper is from ICML(2021). It introduces a novel approach that leverages self-supervised learning to enhance the performance of few-shot learning models by effectively utilizing unlabeled data during the meta-training phase.
+- **[Cross-FCL](https://ieeexplore.ieee.org/abstract/document/9960821/)**: This paper is from TMC(Volume: 23, 2024). It proposes a novel federated learning framework that integrates blockchain technology to ensure secure and decentralized model updates among clients, thereby enhancing data privacy and system robustness.
+- **[TFCL](https://openaccess.thecvf.com/content/CVPR2024/html/Wang_Traceable_Federated_Continual_Learning_CVPR_2024_paper.html)** : This paper is from CVPR(2024). It proposes a novel Traceable Federated Continual Learning (TFCL) paradigm, introducing the TagFed framework that decomposes models into marked sub-models for each client task, enabling precise tracing and selective federation to handle repetitive tasks effectively.
+
+### 5.2 Method usage
+You can find the "main" file in the "baselines" folder corresponding to each method, and then run the method according to the following command
+
+	```shell
+ 	cd baselines
+  	cd XXX  # method name
+	python mainXXX.py --task_number=10 --class_number=100 --dataset=cifar100
+	```
+
+## 6 Experiments setting
+### 6.1 Generate task
+#### 6.1.1 Dataset introduction
 - [Cifar100](http://www.cs.toronto.edu/~kriz/cifar.html): Cifar100 dataset  has a total of 50000 training samples (500 ones per class) and 10000 test samples (100 ones per class) in 100 different classes.
 - [MiniImageNet](https://image-net.org/download.php):MiniImageNet dataset has a total of 50000 training samples (500 ones per class) and 10000 test samples (100 ones per class) in 100 different classes.
 - [TinyImageNet](http://cs231n.stanford.edu/tiny-imagenet-200.zip): TinyImageNet dataset has a total of 100000 training samples (500 ones per class) and 10000 test samples (50 ones per class) in 200 different classes.
@@ -122,7 +158,7 @@ Arguments:
 - [Reddit](https://image-net.org/download.php): Reddit dataset has a total of 40000 training samples (500 ones per class) and 8000 test samples (100 ones per class) in 80 different classes.
 - [Cifar100-text](http://www.cs.toronto.edu/~kriz/cifar.html): Cifar100-text dataset  has a total of 50000 training samples (500 ones per class) and 10000 test samples (100 ones per class) in 100 different classes.
 
-#### 4.1.2 Task split method
+#### 6.1.2 Task split method
 According to the definition of tasks, we use the continual learning [dataset splitting method](https://openaccess.thecvf.com/content_cvpr_2017/html/Rebuffi_iCaRL_Incremental_Classifier_CVPR_2017_paper.html) to split these datasets into multiple tasks. Each tasks have data samples of different class and is assigned a unique task ID. 
 Before building the dataloader, we split each dataset, as follows:
 - split Cifar100 into 10 tasks
@@ -157,7 +193,7 @@ Before building the dataloader, we split each dataset, as follows:
 	```shell
 	python dataset/Reddit.py --task_number=10 --class_number=100
 	```
-#### 4.1.3 Task allocation method
+#### 6.1.3 Task allocation method
 Under the setting of FCL, each client has its own private task sequence, so we allocate each task to all clients in the form of Non-IID according to the method of [FedRep](http://proceedings.mlr.press/v139/collins21a). 
 Specifically, we assign the task sequence of each dataset split to all clients. For each task, each client randomly selects 2-5 classes of data, and randomly obtains 10% of the training samples and test samples from the selected classes. As follows:
 ```shell
@@ -223,7 +259,7 @@ def noniid(dataset, num_users, shard_per_user, num_classes, dataname, rand_set_a
     test = []
     return dict_users, rand_set_all
 ```
-### 4.2 Selection of model
+### 6.2 Selection of model
 PuzzleFL supports a variety of models and can easily add new ones. Based on PyTorch, simply specify the number of tasks and the total number of categories in the model.
 ```shell
 class SixCNN(nn.Module):
@@ -253,8 +289,8 @@ class SixCNN(nn.Module):
         return output
 ```
 
-## 5 Experiment
-### 5.1 Running on Cifar100
+## 7 Experiment
+### 7.1 Running on Cifar100
 We selected 10 Jetson and raspberry Pi devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
 ```shell
@@ -282,7 +318,7 @@ python multi/server.py --epochs=150 --num_users=20 --frac=0.4 --ip=127.0.0.1:800
    ```
 **Note:** Please keep the IP addresses of the server and the client consistent. If there are multiple devices running, run the corresponding code directly on the corresponding edge device and replace it with the IP address of the server. The operating instructions of other baselines are in `scripts/difwork`.
 
-### 5.2 Running on MiniImgaeNet
+### 7.2 Running on MiniImgaeNet
 We selected 10 Jetson and rasberry devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
 ```shell
@@ -310,7 +346,7 @@ python multi/server.py --epochs=150 --num_users=20 --frac=0.4 --ip=127.0.0.1:800
    ```
 **Note:** Please keep the IP addresses of the server and the client consistent. If there are multiple devices running, run the corresponding code directly on the corresponding edge device and replace it with the IP address of the server. The operating instructions of other baselines are in `scripts/difwork`.
 
-### 5.3 Running on TinyImageNet
+### 7.3 Running on TinyImageNet
 We selected 10 Jetson and rasberry devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
 ```shell
@@ -338,7 +374,7 @@ python multi/server.py --epochs=150 --num_users=10 --frac=0.4 --ip=127.0.0.1:800
    ```
 **Note:** Please keep the IP addresses of the server and the client consistent. If there are multiple devices running, run the corresponding code directly on the corresponding edge device and replace it with the IP address of the server. The operating instructions of other baselines are in `scripts/difwork`.
 
-### 5.4 Running on ASC
+### 7.4 Running on ASC
 We selected 10 Jetson and rasberry devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
 ```shell
@@ -365,7 +401,7 @@ python multi/server.py --epochs=150 --num_users=10 --frac=0.4 --ip=127.0.0.1:800
    ```
 **Note:** Please keep the IP addresses of the server and the client consistent. If there are multiple devices running, run the corresponding code directly on the corresponding edge device and replace it with the IP address of the server. The operating instructions of other baselines are in `scripts/difwork`.
 
-### 5.5 Running on DSC
+### 7.5 Running on DSC
 We selected 10 Jetson and rasberry devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
 ```shell
@@ -383,12 +419,12 @@ python multi/server.py --epochs=150 --num_users=10 --frac=0.4 --ip=127.0.0.1:800
        python multi/ClientTrainNLP.py --client_id=$i --model=bert --dataset=DSC --num_classes=100 --task=10 --alg=PuzzleFL --lr=0.001 --optim=Adam --lr_decay=1e-4 --ip=127.0.0.1:8000
    done
    ```
-### 5.6 Result
+### 7.6 Result
 - **The accuracy trend overtime time under different workloads**(X-axis represents the time and Y-axis represents the inference accuracy)
     ![](https://github.com/LINC-BIT/Loci/blob/main/Result.png))
 
 
-### 6 Citation
+### 8 Citation
 The citations of the baseline methods in `baselines/` are listed as follows: 
 
 #### DFL methods:
