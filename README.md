@@ -158,8 +158,8 @@ Our system not only implements Loci, but also implements classic and latest fede
 - **[FedKD](https://arxiv.org/abs/2003.13461)**: This paper is from AIR(2017). It designs various distillation losses based on the network layer on the client-side.
 - **[FedKEMF](https://proceedings.mlr.press/v139/collins21a.html)**: This paper is from ICML(2021).  It considers merging all teacher networks during aggregation, and uses a common dataset to distill a better server-side global network.
 - **[FedGKT](https://proceedings.neurips.cc/paper/2020/hash/a1d4c20b182ad7137ab3606f0e3fc8a4-Abstract.html)** : This paper is from NIPS(2023) .It designs a variant of the alternating minimization approach to train small models on edge nodes and periodically transfer their knowledge by knowledge distillation to a large server-side model.
-- **[CFL](https://ieeexplore.ieee.org/abstract/document/9174890)** : This paper is from NNLS(Volume: 32, 2020). It divides clients into clusters based on the cosine-similarity of their gradients/parameters, and performs global aggregation for clients in the same cluster.
-- **[IFCA](https://proceedings.neurips.cc/paper_files/paper/2020/hash/e32cc80bf07915058ce90722ee17bb71-Abstract.html)** : This paper is from NIPS(2020). It estimates the clustering identity of clients, optimizes the model parameters for each cluster, and also allows parameter sharing among different clusters.
+- **[CFL](https://ieeexplore.ieee.org/abstract/document/9174890)** : This paper is from NNLS(Volume: 32, 2020). It divides clients into clusters based on the cosine-similarity of their gridients parameters, and performs global aggregation for clients in the same cluster.
+- **[IFCA](https://proceedings.neurips.cc/paper_files/paper/2020/hash/e32cc80bf07915058ce90722ee17bb71-Abstract.html)** : This paper is from NIPS(2020). It estimates the clustering dentity of clients, optimizes the model parameters for each cluster, and also allows parameter sharing among different clusters.
 - **[GradMFL](https://link.springer.com/chapter/10.1007/978-3-030-95384-3_38)** : This paper is from ICAAPP(2021). It introduces a hierarchical cluster to organize clients and supports knowledge transfer among different hierarchies.
 ### 4.2 Method usage
 You can find the "main" file in the "baselines" folder corresponding to each method, and then run the method according to the following command
@@ -480,7 +480,8 @@ The citations of the baseline methods in `baselines/` are listed as follows:
     year={2017},
     organization={PMLR}
     }
-
+```
+    
 - PENS
     ```bibtex
     @article{onoszko2021decentralized,
@@ -489,7 +490,8 @@ The citations of the baseline methods in `baselines/` are listed as follows:
     journal={arXiv preprint arXiv:2107.08517},
     year={2021}
     }
-
+```
+    
 - FedHP 
     ```bibtex
     @inproceedings{liao2023adaptive,
@@ -500,6 +502,7 @@ The citations of the baseline methods in `baselines/` are listed as follows:
     year={2023},
     organization={IEEE}
     }
+    ```
 
 
 - HDFL 
@@ -512,6 +515,7 @@ The citations of the baseline methods in `baselines/` are listed as follows:
     year={2023},
     organization={IEEE}
     }
+    ```
 
 #### FCL methods:
 
@@ -525,6 +529,7 @@ The citations of the baseline methods in `baselines/` are listed as follows:
     year={2021},
     organization={PMLR}
     }
+    ```
 
 
 - FedKNOW
@@ -537,6 +542,7 @@ The citations of the baseline methods in `baselines/` are listed as follows:
     year={2023},
     organization={IEEE}
     }
+    ```
 
 
 - FedViT
@@ -550,3 +556,4 @@ The citations of the baseline methods in `baselines/` are listed as follows:
     year={2024},
     publisher={Elsevier}
     }
+    ```
