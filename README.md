@@ -154,7 +154,7 @@ Arguments:
 ## 4 Supported FL methods
 ### 4.1 Method introduction
 Our system not only implements Loci, but also implements classic and latest federated learning methods with heterogeneous model and clustered federated learning, mainly including the following:
-- **[FedMD](https://arxiv.org/abs/2107.08517)**: This paper is from AIR(2017). It uses public datasets to update the distillation model during aggregation.
+- **[FedMD](https://arxiv.org/abs/2107.08517)**: This paper is from AIR(2017). It uses public datasets to update the distillation model during aggregation.
 - **[FedKD](https://arxiv.org/abs/2003.13461)**: This paper is from AIR(2017). It designs various distillation losses based on the network layer on the client-side.
 - **[FedKEMF](https://proceedings.mlr.press/v139/collins21a.html)**: This paper is from ICML(2021).  It considers merging all teacher networks during aggregation, and uses a common dataset to distill a better server-side global network.
 - **[FedGKT](https://proceedings.neurips.cc/paper/2020/hash/a1d4c20b182ad7137ab3606f0e3fc8a4-Abstract.html)** : This paper is from NIPS(2023) .It designs a variant of the alternating minimization approach to train small models on edge nodes and periodically transfer their knowledge by knowledge distillation to a large server-side model.
