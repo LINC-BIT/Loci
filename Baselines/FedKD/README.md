@@ -6,10 +6,10 @@ We set six continual learning methods on FedMD. You can use the following comman
 
 
 
-	```shell
-
+~~~sh
+```shell
  	cd baselines
-  	cd FedKD  # method name
+  cd FedKD  # method name
 	python mainKD_EWC.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy EWC
 
 ​	python mainKD_MAS.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy MAS
@@ -21,6 +21,5 @@ We set six continual learning methods on FedMD. You can use the following comman
 ​	python mainKD_Packnet.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy Packet
 
 ​	python mainKD_ChannelGate.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy ChannelGate
-
-​	```
+~~~
 
