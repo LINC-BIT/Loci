@@ -12,14 +12,14 @@ cd baselines
 cd FedKD  # method name
 python mainKD_EWC.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy EWC
 
-​	python mainKD_MAS.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy MAS
+python mainKD_MAS.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy MAS
 
-​	python mainKD_GEM.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy GEM
+python mainKD_GEM.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy GEM
 
-​	python mainKD_FedKNOW.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy FedKNOW
+python mainKD_FedKNOW.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy FedKNOW
 
-​	python mainKD_Packnet.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy Packet
+python mainKD_Packnet.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy Packet
 
-​	python mainKD_ChannelGate.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy ChannelGate
+python mainKD_ChannelGate.py --task_number=10 --class_number=100 --dataset=cifar100 ## deploy ChannelGate
 ~~~
 
