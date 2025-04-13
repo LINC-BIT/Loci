@@ -47,7 +47,7 @@ cd PDF_Extract
 python main.py --data_type detection --config_file detection_config.json --data_root_dir /path/to/detection_data
 ```
 
-##  v
+
 
 ## Fine-tuning the Model
 
