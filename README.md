@@ -13,17 +13,18 @@
   * [3.5 Time-series data forecasting](#35-Time-series-data-forecasting)
 - [4 Supported FL methods](#4-Supported-FL-methods)
 - [5 Supported FCL methods](#5-Supported-FCL-methods)
-- [6 Experiments setting](#6-Experiments-setting)
-  * [6.1 Generate task](#61-Generate-task)
-  * [6.2 Selection of model](#62-Selection-of-model)
-- [7 Experiments](#7-Experiments)
-  * [7.1 Running on Cifar100](#71-Running-on-Cifar100)
-  * [7.2 Running on MiniImageNet](#72-Running-on-MiniImgaeNet)
-  * [7.3 Running on TinyImageNet](#73-Running-on-TinyImageNet)
-  * [7.4 Running on ASC](#74-Running-on-ASC)
-  * [7.5 Running on DSC](#75-Running-on-DSC)
-  * [7.6 Result](#76-result)
-- [8 Citations](#8-citation)
+- [6 PDF extract](#6-PDF-extract)
+- [7 Experiments setting](#6-Experiments-setting)
+  * [7.1 Generate task](#71-Generate-task)
+  * [7.2 Selection of model](#72-Selection-of-model)
+- [8 Experiments](#8-Experiments)
+  * [8.1 Running on Cifar100](#81-Running-on-Cifar100)
+  * [8.2 Running on MiniImageNet](#82-Running-on-MiniImgaeNet)
+  * [8.3 Running on TinyImageNet](#73-Running-on-TinyImageNet)
+  * [8.4 Running on ASC](#84-Running-on-ASC)
+  * [8.5 Running on DSC](#75-Running-on-DSC)
+  * [8.6 Result](#86-result)
+- [9 Citations](#8-citation)
 
 ## 1 Introduction
 Loci is designed to achieve SOTA performance (accuracy, time, and communication cost etc.) in federated continual learning setting(heterogeneous tasks). It now supports 17 typical neural models under four applications(CV, NLP, Graph and Multimodal). 
@@ -187,9 +188,15 @@ You can find the "main" file in the "baselines" folder corresponding to each met
 	python mainXXX.py --task_number=10 --class_number=100 --dataset=cifar100
 	```
 
-## 6 Experiments setting
-### 6.1 Generate task
-#### 6.1.1 Dataset introduction
+# 6 PDF extract
+
+Loci also supports the PDF files. When you only have PDF files, you can click [here](https://github.com/LINC-BIT/Loci/tree/main/PDF_Extract) to view the code. It can first process the image data and tabular data from PDF. 
+
+
+
+## 7 Experiments setting
+### 7.1 Generate task
+#### 7.1.1 Dataset introduction
 - [Cifar100](http://www.cs.toronto.edu/~kriz/cifar.html): Cifar100 dataset  has a total of 50000 training samples (500 ones per class) and 10000 test samples (100 ones per class) in 100 different classes.
 - [MiniImageNet](https://image-net.org/download.php):MiniImageNet dataset has a total of 50000 training samples (500 ones per class) and 10000 test samples (100 ones per class) in 100 different classes.
 - [TinyImageNet](http://cs231n.stanford.edu/tiny-imagenet-200.zip): TinyImageNet dataset has a total of 100000 training samples (500 ones per class) and 10000 test samples (50 ones per class) in 200 different classes.
@@ -200,7 +207,7 @@ You can find the "main" file in the "baselines" folder corresponding to each met
 - [Reddit](https://image-net.org/download.php): Reddit dataset has a total of 40000 training samples (500 ones per class) and 8000 test samples (100 ones per class) in 80 different classes.
 - [Cifar100-text](http://www.cs.toronto.edu/~kriz/cifar.html): Cifar100-text dataset  has a total of 50000 training samples (500 ones per class) and 10000 test samples (100 ones per class) in 100 different classes.
 
-#### 6.1.2 Task split method
+#### 7.1.2 Task split method
 According to the definition of tasks, we use the continual learning [dataset splitting method](https://openaccess.thecvf.com/content_cvpr_2017/html/Rebuffi_iCaRL_Incremental_Classifier_CVPR_2017_paper.html) to split these datasets into multiple tasks. Each tasks have data samples of different class and is assigned a unique task ID. 
 Before building the dataloader, we split each dataset, as follows:
 - split Cifar100 into 10 tasks
@@ -235,7 +242,7 @@ Before building the dataloader, we split each dataset, as follows:
 	```shell
 	python dataset/Reddit.py --task_number=10 --class_number=100
 	```
-#### 6.1.3 Task allocation method
+#### 7.1.3 Task allocation method
 Under the setting of FCL, each client has its own private task sequence, so we allocate each task to all clients in the form of Non-IID according to the method of [FedRep](http://proceedings.mlr.press/v139/collins21a). 
 Specifically, we assign the task sequence of each dataset split to all clients. For each task, each client randomly selects 2-5 classes of data, and randomly obtains 10% of the training samples and test samples from the selected classes. As follows:
 ```shell
@@ -301,7 +308,7 @@ def noniid(dataset, num_users, shard_per_user, num_classes, dataname, rand_set_a
     test = []
     return dict_users, rand_set_all
 ```
-### 6.2 Selection of model
+### 7.2 Selection of model
 PuzzleFL supports a variety of models and can easily add new ones. Based on PyTorch, simply specify the number of tasks and the total number of categories in the model.
 ```shell
 class SixCNN(nn.Module):
@@ -331,8 +338,8 @@ class SixCNN(nn.Module):
         return output
 ```
 
-## 7 Experiments
-### 7.1 Running on Cifar100
+## 8 Experiments
+### 8.1 Running on Cifar100
 We selected 10 Jetson and raspberry Pi devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
 ```shell
@@ -360,7 +367,7 @@ python multi/server.py --epochs=150 --num_users=20 --frac=0.4 --ip=127.0.0.1:800
    ```
 **Note:** Please keep the IP addresses of the server and the client consistent. If there are multiple devices running, run the corresponding code directly on the corresponding edge device and replace it with the IP address of the server. The operating instructions of other baselines are in `scripts/difwork`.
 
-### 7.2 Running on MiniImgaeNet
+### 8.2 Running on MiniImgaeNet
 We selected 10 Jetson and rasberry devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
 ```shell
@@ -388,7 +395,7 @@ python multi/server.py --epochs=150 --num_users=20 --frac=0.4 --ip=127.0.0.1:800
    ```
 **Note:** Please keep the IP addresses of the server and the client consistent. If there are multiple devices running, run the corresponding code directly on the corresponding edge device and replace it with the IP address of the server. The operating instructions of other baselines are in `scripts/difwork`.
 
-### 7.3 Running on TinyImageNet
+### 8.3 Running on TinyImageNet
 We selected 10 Jetson and rasberry devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
 ```shell
@@ -416,7 +423,7 @@ python multi/server.py --epochs=150 --num_users=10 --frac=0.4 --ip=127.0.0.1:800
    ```
 **Note:** Please keep the IP addresses of the server and the client consistent. If there are multiple devices running, run the corresponding code directly on the corresponding edge device and replace it with the IP address of the server. The operating instructions of other baselines are in `scripts/difwork`.
 
-### 7.4 Running on ASC
+### 8.4 Running on ASC
 We selected 10 Jetson and rasberry devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
 ```shell
@@ -443,7 +450,7 @@ python multi/server.py --epochs=150 --num_users=10 --frac=0.4 --ip=127.0.0.1:800
    ```
 **Note:** Please keep the IP addresses of the server and the client consistent. If there are multiple devices running, run the corresponding code directly on the corresponding edge device and replace it with the IP address of the server. The operating instructions of other baselines are in `scripts/difwork`.
 
-### 7.5 Running on DSC
+### 8.5 Running on DSC
 We selected 10 Jetson and rasberry devices with different memory and different computing speeds to test on cifar100, including 2 Jetson-nano devices with 4GB memory, 2 Jetson-Xavier-NX with 16GB memory, 2 Jetson-AgX with 32GB memory and rasberry pi with 4GB memory.
 - **Launch the server:**
 ```shell
@@ -461,12 +468,12 @@ python multi/server.py --epochs=150 --num_users=10 --frac=0.4 --ip=127.0.0.1:800
        python multi/ClientTrainNLP.py --client_id=$i --model=bert --dataset=DSC --num_classes=100 --task=10 --alg=PuzzleFL --lr=0.001 --optim=Adam --lr_decay=1e-4 --ip=127.0.0.1:8000
    done
    ```
-### 7.6 Result
+### 8.6 Result
 - **The accuracy trend overtime time under different workloads**(X-axis represents the time and Y-axis represents the inference accuracy)
     ![](https://github.com/LINC-BIT/Loci/blob/main/Result.png))
 
 
-### 8 Citation
+### 9 Citation
 The citations of the baseline methods in `baselines/` are listed as follows: 
 
 #### DFL methods:
@@ -480,6 +487,7 @@ The citations of the baseline methods in `baselines/` are listed as follows:
     year={2017},
     organization={PMLR}
     }
+    ```
 ```
     
 - PENS
@@ -491,7 +499,7 @@ The citations of the baseline methods in `baselines/` are listed as follows:
     year={2021}
     }
 ```
-    
+
 - FedHP 
     ```bibtex
     @inproceedings{liao2023adaptive,
